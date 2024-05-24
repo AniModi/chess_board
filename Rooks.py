@@ -125,7 +125,3 @@ class Rook:
         else:
             self.generate_slider_attacks()
             self.save_slider_attacks()
-
-
-
-Rook()
