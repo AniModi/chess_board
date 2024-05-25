@@ -131,5 +131,3 @@ class Bishop:
             self.generate_slider_attacks()
             self.save_slider_attacks()
             
-
-Bishop()

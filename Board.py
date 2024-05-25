@@ -36,6 +36,11 @@ class BOARD:
 
         return self.SIDES[color] & self.BOARD[piece_id].PIECE
 
+    def get_piece_attacks(self, piece_id):
+        if piece_id == self.BISHOP or piece_id == self.ROOK or piece_id == self.QUEEN:
+            return self.BOARD[piece_id].get_attack
+        return self.BOARD[piece_id].ATTACKS
+
     
     def place_piece_at(self, side, piece, pos):
         pos = self.square_to_bitboard(pos)
@@ -134,19 +139,9 @@ class BOARD:
 
 
     def square_to_bitboard(self, square):
-        if len(square) != 2:
-            raise ValueError("Invalid square")
-        
-        file = square[0].lower()
+        _file = square[0].lower()
         rank = square[1]
-
-        if file < 'a' or file > 'h' or rank < '1' or rank > '8':
-            raise ValueError("Invalid square")
-
-        file_index = ord(file) - ord('a')
+        file_index = ord(_file) - ord('a')
         rank_index = int(rank) - 1
-
         bit_position = rank_index * 8 + file_index
-
-
         return bit_position
