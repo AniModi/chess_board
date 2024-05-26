@@ -18,14 +18,20 @@ class BOARD:
         self.WHITE = 0
         self.BLACK = 1
         self.BOARD = [Pawn(), Rook(), Knight(), Bishop(), Queen(), King()]
-        self.initialize_board()
+        self.RANKS = [Piece() for i in range(8)]
+        self.initialize_ranks()
 
-    def initialize_board(self, board = [0xFFFF, 0xFFFF000000000000, 0x00FF00000000FF00, 0x8100000000000081, 0x4200000000000042, 0x2400000000000024, 0x800000000000008, 0x1000000000000010]):
+    def initialize_board(self, board):
 
         self.SIDES[0].PIECE = board[0]
         self.SIDES[1].PIECE = board[1]
         for i in range(2, 8):
             self.BOARD[i - 2].PIECE = Piece(board[i])
+
+    def initialize_ranks(self):
+        self.RANKS[0].PIECE = 0xFF
+        for i in range(1, 8):
+            self.RANKS[i] = self.RANKS[i - 1] << 8
 
     def get_all_pieces(self):
 
